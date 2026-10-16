@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitGravity — The Student's Step-by-Step Git & GitHub Guide</title>
+  <meta name="description" content="An interactive, beginner-friendly visual guide for students to master Git and GitHub commands step-by-step for Hacktoberfest and beyond." />
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-theme">
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Header & Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6" y1="3" x2="6" y2="15"></line>
+            <circle cx="18" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <path d="M18 9a9 9 0 0 1-9 9"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Git<span class="accent-text">Gravity</span></span>
+          <span class="badge hacktober-badge">🎃 Hacktoberfest 2026</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#simulator" class="nav-link active">Simulator</a>
+        <a href="#guided-journeys" class="nav-link">Step-by-Step Guides</a>
+        <a href="#git-vs-github" class="nav-link">Git vs GitHub</a>
+        <a href="#command-library" class="nav-link">Cheat Sheet</a>
+        <a href="#emergency-room" class="nav-link">Git Emergency 🚑</a>
+        <a href="#quiz-section" class="nav-link">Quiz 🧠</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle" class="btn-icon" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <a href="#guided-journeys" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
+    <div class="hero-content">
+      <div class="pill-tag">
+        <span class="pulse-dot"></span>
+        Zero jargon. 100% Student-Friendly Git & GitHub Guide
+      </div>
+      <h1 class="hero-title">
+        Master Git & GitHub <br />
+        <span class="gradient-text">Without The Headache.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Confused by <code class="inline-code">git commit</code>, <code class="inline-code">push</code>, and staging areas? 
+        GitGravity breaks every command down with <strong>real-world analogies</strong>, 
+        an <strong>interactive visual simulator</strong>, and <strong>step-by-step copyable workflows</strong> built for your HackDay project!
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#simulator" class="btn btn-primary btn-lg">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Try Interactive Simulator
+        </a>
+        <a href="#guided-journeys" class="btn btn-outline btn-lg">
+          Follow Step-by-Step Guide
+        </a>
+      </div>
+
+      <!-- Quick Concept: The 4 Stages of Git -->
+      <div class="stages-overview-card">
+        <div class="stages-header">
+          <h3>The Mental Model: How Git Actually Works</h3>
+          <span class="subtitle-hint">Hover or tap any stage to understand where your code travels</span>
+        </div>
+        <div class="stages-flow">
+          <div class="stage-step" data-stage="working">
+            <div class="stage-icon">📁</div>
+            <div class="stage-info">
+              <span class="stage-tag">Step 1</span>
+              <h4>Working Directory</h4>
+              <p>Your actual files on your laptop desk. Files you are currently editing.</p>
+            </div>
+            <div class="stage-action-arrow">
+              <span>git add</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          </div>
+
+          <div class="stage-step" data-stage="staging">
+            <div class="stage-icon">📦</div>
+            <div class="stage-info">
+              <span class="stage-tag">Step 2</span>
+              <h4>Staging Area (Index)</h4>
+              <p>The "Packing Box". The specific changes you choose to include in your next snapshot.</p>
+            </div>
+            <div class="stage-action-arrow">
+              <span>git commit</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          </div>
+
+          <div class="stage-step" data-stage="local">
+            <div class="stage-icon">🗄️</div>
+            <div class="stage-info">
+              <span class="stage-tag">Step 3</span>
+              <h4>Local Repository</h4>
+              <p>Your permanent sealed photo album on your laptop. Saved in <code class="inline-code">.git</code>.</p>
+            </div>
+            <div class="stage-action-arrow">
+              <span>git push</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          </div>
+
+          <div class="stage-step" data-stage="remote">
+            <div class="stage-icon">☁️</div>
+            <div class="stage-info">
+              <span class="stage-tag">Step 4</span>
+              <h4>Remote (GitHub)</h4>
+              <p>The cloud copy on github.com where teammates and Hacktoberfest mentors can see it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Interactive Terminal Simulator & Visualizer -->
+  <section id="simulator" class="section simulator-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Interactive Playground</span>
+        <h2 class="section-title">Visual Git Terminal Simulator</h2>
+        <p class="section-description">
+          Practice typing real commands or click the shortcut buttons below. 
+          Watch how files move between your laptop and GitHub in real time!
+        </p>
+      </div>
+
+      <div class="simulator-grid">
+        <!-- Left: Simulated Terminal -->
+        <div class="terminal-card">
+          <div class="terminal-bar">
+            <div class="window-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="terminal-title">bash — student-laptop: ~/my-hackday-project (main)</div>
+            <div class="terminal-actions">
+              <button id="terminal-reset-btn" class="btn-text-sm" title="Reset simulator state">Reset 🔄</button>
+            </div>
+          </div>
+
+          <div id="terminal-screen" class="terminal-screen">
+            <div class="terminal-welcome">
+              <span class="text-emerald">✨ Welcome to the Student Git Playground!</span><br />
+              Type commands like <span class="text-cyan">git status</span>, <span class="text-cyan">git add .</span>, or click any quick-action button below.<br />
+              Type <span class="text-yellow">help</span> to list all supported commands.
+            </div>
+            <div id="terminal-history"></div>
+            <div class="terminal-prompt-line">
+              <span class="prompt-user">student@hackday</span>:<span class="prompt-dir">~/project</span><span id="prompt-branch" class="prompt-branch">(main)</span>$
+              <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="type a git command..." />
+            </div>
+          </div>
+
+          <div class="terminal-quick-actions">
+            <span class="quick-label">Quick Commands:</span>
+            <div class="chips-list">
+              <button class="chip-cmd" data-cmd="git status">git status</button>
+              <button class="chip-cmd" data-cmd="git add .">git add .</button>
+              <button class="chip-cmd" data-cmd='git commit -m "feat: first commit"'>git commit</button>
+              <button class="chip-cmd" data-cmd="git branch -b feature-login">git checkout -b</button>
+              <button class="chip-cmd" data-cmd="git push origin main">git push</button>
+              <button class="chip-cmd" data-cmd="git log --oneline">git log</button>
+              <button class="chip-cmd" data-cmd="help">help</button>
+              <button class="chip-cmd" data-cmd="clear">clear</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Visual State & Commit Tree -->
+        <div class="visualizer-card">
+          <div class="visualizer-header">
+            <h3>Live Repository State</h3>
+            <span id="repo-status-badge" class="badge badge-success">Clean & Synced</span>
+          </div>
+
+          <!-- File States Tracker -->
+          <div class="files-tracker">
+            <div class="tracker-column" id="col-untracked">
+              <div class="col-title">
+                <span class="col-dot dot-yellow"></span>
+                <span>Untracked / Modified</span>
+                <span class="count-badge" id="count-untracked">2</span>
+              </div>
+              <div class="file-list" id="list-untracked">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="tracker-column" id="col-staged">
+              <div class="col-title">
+                <span class="col-dot dot-green"></span>
+                <span>Staged for Commit</span>
+                <span class="count-badge" id="count-staged">0</span>
+              </div>
+              <div class="file-list" id="list-staged">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Branch & Remote Indicator -->
+          <div class="repo-meta-bar">
+            <div class="meta-item">
+              <span class="meta-label">Current Branch:</span>
+              <span class="meta-val branch-tag" id="meta-branch">main</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Remote (GitHub):</span>
+              <span class="meta-val remote-tag" id="meta-remote">github.com/student/hackday</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Pushed to Cloud:</span>
+              <span class="meta-val sync-tag" id="meta-sync">Up to date</span>
+            </div>
+          </div>
+
+          <!-- Commit History Graph -->
+          <div class="commit-graph-container">
+            <div class="graph-header">
+              <h4>Git Commit History Tree</h4>
+              <span class="hint-small">Every commit is a permanent snapshot</span>
+            </div>
+            <div id="commit-tree" class="commit-tree">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+
+          <!-- What Just Happened Explainer Box -->
+          <div class="explanation-box" id="explanation-box">
+            <div class="exp-icon">💡</div>
+            <div class="exp-content">
+              <h5 id="exp-title">Ready for your command!</h5>
+              <p id="exp-desc">Type a command like <code class="inline-code">git add .</code> or click a quick action above to see how Git responds.</p>
+            </div>
+          </div>
+
+          <!-- Gemma 4 AI Student Git Coach -->
+          <div class="gemma-ai-widget">
+            <div class="gemma-ai-header">
+              <div class="gemma-brand">
+                <span class="gemma-icon">🤖</span>
+                <div>
+                  <h4>Gemma 4 Student Git Coach</h4>
+                  <span class="gemma-sub">Open-weight AI powered by Gemma 4 via Gemini API</span>
+                </div>
+              </div>
+              <span class="badge hacktober-badge">Gemma 4</span>
+            </div>
+            <div class="gemma-ai-body">
+              <div class="gemma-input-row">
+                <input type="text" id="gemma-question-input" placeholder="Confused? Ask Gemma: e.g. 'What is git commit?', 'Why did push fail?'" />
+                <button id="gemma-ask-btn" class="btn btn-primary btn-sm">Ask Gemma</button>
+              </div>
+              <div id="gemma-ai-response" class="gemma-ai-response" style="display: none;">
+                <div class="gemma-resp-badge">✨ Gemma 4 Explanation:</div>
+                <p id="gemma-resp-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Step-by-Step Guided Workflows -->
+  <section id="guided-journeys" class="section guides-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Zero to Hero Roadmap</span>
+        <h2 class="section-title">From Creating a Repository to Pushing to Main</h2>
+        <p class="section-description">
+          The complete, beginner-proof guide for students. Follow the step-by-step pipeline from clicking "New" on GitHub.com 
+          all the way to pushing your code safely into the <strong>main</strong> branch.
+        </p>
+      </div>
+
+      <!-- Zero-to-Main Visual Pipeline Roadmap -->
+      <div class="pipeline-roadmap">
+        <div class="roadmap-track">
+          <div class="roadmap-node active" data-step="1">
+            <div class="node-circle">1</div>
+            <span class="node-label">GitHub.com</span>
+            <span class="node-sub">Create Empty Repo</span>
+          </div>
+          <div class="roadmap-line"></div>
+          <div class="roadmap-node" data-step="2">
+            <div class="node-circle">2</div>
+            <span class="node-label">Local Desk</span>
+            <span class="node-sub">git init</span>
+          </div>
+          <div class="roadmap-line"></div>
+          <div class="roadmap-node" data-step="3">
+            <div class="node-circle">3</div>
+            <span class="node-label">Staging Box</span>
+            <span class="node-sub">git add .</span>
+          </div>
+          <div class="roadmap-line"></div>
+          <div class="roadmap-node" data-step="4">
+            <div class="node-circle">4</div>
+            <span class="node-label">Snapshot</span>
+            <span class="node-sub">git commit</span>
+          </div>
+          <div class="roadmap-line"></div>
+          <div class="roadmap-node" data-step="5">
+            <div class="node-circle">5</div>
+            <span class="node-label">Main Branch</span>
+            <span class="node-sub">git branch -M</span>
+          </div>
+          <div class="roadmap-line"></div>
+          <div class="roadmap-node" data-step="6">
+            <div class="node-circle">6</div>
+            <span class="node-label">Connect Link</span>
+            <span class="node-sub">git remote add</span>
+          </div>
+          <div class="roadmap-line"></div>
+          <div class="roadmap-node highlight" data-step="7">
+            <div class="node-circle">🚀</div>
+            <span class="node-label">The Push</span>
+            <span class="node-sub">git push origin main</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 0: GitHub.com Web Simulator Mockup -->
+      <div class="github-mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-brand">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub.com Simulator — <strong>Create a new repository</strong></span>
+          </div>
+          <a href="https://github.com/new" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+            Open Real GitHub.com/new ↗
+          </a>
+        </div>
+
+        <div class="mockup-body">
+          <div class="mockup-row">
+            <div class="mockup-field">
+              <label>Owner / Repository name *</label>
+              <div class="repo-name-input-group">
+                <span class="owner-pill" id="mock-owner-display">your-username</span>
+                <span class="slash">/</span>
+                <input type="text" id="mock-repo-name" value="hackday-project" placeholder="my-awesome-project" />
+              </div>
+            </div>
+            <div class="mockup-field">
+              <label>Visibility</label>
+              <div class="radio-pill-group">
+                <span class="radio-pill active">🌐 Public (Everyone can see it)</span>
+                <span class="radio-pill">🔒 Private</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Critical Student Alert Banner -->
+          <div class="warning-banner">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-text">
+              <strong>CRITICAL RULE FOR STUDENTS:</strong><br />
+              If you already created code or files on your laptop, <strong>LEAVE ALL 3 BOXES BELOW UNCHECKED!</strong><br />
+              Checking "Add a README" creates an initial commit on GitHub that conflicts with your computer, causing the dreaded <code class="inline-code">fatal: refusing to merge unrelated histories</code> error.
+            </div>
+          </div>
+
+          <div class="mockup-checkboxes-box">
+            <span class="sub-label">Initialize this repository with:</span>
+            <div class="mock-checkbox-list">
+              <label class="mock-chk disabled-chk">
+                <input type="checkbox" id="mock-chk-readme" />
+                <span class="mock-box"></span>
+                <span><strong>Add a README file</strong> <em class="text-yellow">(Leave UNCHECKED if pushing existing code)</em></span>
+              </label>
+              <label class="mock-chk disabled-chk">
+                <input type="checkbox" id="mock-chk-gitignore" />
+                <span class="mock-box"></span>
+                <span><strong>Add .gitignore</strong> <em class="text-dim">(Optional, we provided one for you)</em></span>
+              </label>
+              <label class="mock-chk disabled-chk">
+                <input type="checkbox" id="mock-chk-license" />
+                <span class="mock-box"></span>
+                <span><strong>Choose a license</strong> <em class="text-dim">(e.g. MIT License)</em></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="mockup-footer">
+            <div class="mockup-hint">
+              Generated Remote URL: <code id="mockup-remote-preview" class="inline-code">https://github.com/your-username/hackday-project.git</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- All-in-One Fast-Track Terminal Card -->
+      <div class="all-in-one-card">
+        <div class="aio-header">
+          <div class="aio-title">
+            <span>⚡</span>
+            <h4>Fast-Track: Run the Entire Push Sequence in 1 Click</h4>
+          </div>
+          <button id="copy-all-commands-btn" class="btn btn-primary btn-sm">
+            <span>📋</span> Copy All Commands to Clipboard
+          </button>
+        </div>
+        <pre class="aio-code"><code id="aio-code-content"># 1. Initialize local repository
+git init
+
+# 2. Stage all your project files
+git add .
+
+# 3. Create your first permanent snapshot
+git commit -m "feat: initial commit of my project"
+
+# 4. Set default branch to main
+git branch -M main
+
+# 5. Link local folder to your GitHub repository
+git remote add origin https://github.com/your-username/hackday-project.git
+
+# 6. Push your code into the main branch!
+git push -u origin main</code></pre>
+        <div class="aio-footer">
+          <span>💡 Paste this into your terminal (VS Code / Antigravity terminal) to push your whole project in 5 seconds!</span>
+        </div>
+      </div>
+
+      <!-- Workflow Select Tabs -->
+      <div class="workflow-tabs" role="tablist">
+        <button class="workflow-tab active" data-flow="first-repo" role="tab">
+          <span class="tab-icon">🚀</span>
+          <span>1. Full Beginner Walkthrough: Zero to Main</span>
+        </button>
+        <button class="workflow-tab" data-flow="hacktoberfest" role="tab">
+          <span class="tab-icon">🎃</span>
+          <span>2. Hacktoberfest / Open Source PR</span>
+        </button>
+        <button class="workflow-tab" data-flow="daily-work" role="tab">
+          <span class="tab-icon">🔄</span>
+          <span>3. Everyday Safe Coding Cycle</span>
+        </button>
+        <button class="workflow-tab" data-flow="team-collab" role="tab">
+          <span class="tab-icon">👥</span>
+          <span>4. Teammate Collaboration</span>
+        </button>
+      </div>
+
+      <!-- Live Interactive Parameter Customizer -->
+      <div class="customizer-box">
+        <div class="customizer-header">
+          <span class="customizer-title">✨ Customize Your Parameters (Live-updates all steps below):</span>
+        </div>
+        <div class="customizer-inputs customizer-grid-5">
+          <div class="input-group">
+            <label for="custom-user-name">Your Full Name:</label>
+            <input type="text" id="custom-user-name" value="Mustafa Shaik" placeholder="Your Name" />
+          </div>
+          <div class="input-group">
+            <label for="custom-user-email">GitHub Email Address:</label>
+            <input type="email" id="custom-user-email" value="student@example.com" placeholder="email@example.com" />
+          </div>
+          <div class="input-group">
+            <label for="custom-repo-url">Your GitHub Repo URL:</label>
+            <input type="text" id="custom-repo-url" value="https://github.com/your-username/hackday-project.git" placeholder="https://github.com/username/repo.git" />
+          </div>
+          <div class="input-group">
+            <label for="custom-branch-name">Branch Name:</label>
+            <input type="text" id="custom-branch-name" value="feature-cool-navbar" placeholder="feature-name" />
+          </div>
+          <div class="input-group">
+            <label for="custom-commit-msg">Commit Message:</label>
+            <input type="text" id="custom-commit-msg" value="feat: add student dashboard UI" placeholder="what did you change?" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Cards Container -->
+      <div id="workflow-steps-container" class="steps-container">
+        <!-- Rendered dynamically via JS based on selected tab -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Git vs GitHub Explainer -->
+  <section id="git-vs-github" class="section comparison-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Core Concept</span>
+        <h2 class="section-title">Git vs GitHub: The #1 Student Confusion</h2>
+        <p class="section-description">
+          Many beginners think Git and GitHub are the same thing. They aren't! Here's the clearest explanation you will ever read.
+        </p>
+      </div>
+
+      <div class="vs-grid">
+        <div class="vs-card git-card">
+          <div class="vs-card-header">
+            <div class="vs-badge">Offline Tool</div>
+            <div class="vs-icon">⚡</div>
+            <h3>Git</h3>
+            <p class="vs-tagline">The Version Control Software</p>
+          </div>
+          <div class="vs-analogy">
+            <strong>Real-Life Analogy:</strong> Think of Git as a <em>high-tech camera</em> installed on your laptop that takes snapshots of your code whenever you ask.
+          </div>
+          <ul class="vs-features">
+            <li>✅ Works 100% offline without internet connection</li>
+            <li>✅ Installed on your local machine / command terminal</li>
+            <li>✅ Tracks line-by-line history and changes in code</li>
+            <li>✅ Created by Linus Torvalds in 2005 for Linux</li>
+            <li>❌ Has no website, no public user profile, and no cloud hosting by itself</li>
+          </ul>
+        </div>
+
+        <div class="vs-divider">
+          <span>VS</span>
+        </div>
+
+        <div class="vs-card github-card">
+          <div class="vs-card-header">
+            <div class="vs-badge">Cloud Platform</div>
+            <div class="vs-icon">🐙</div>
+            <h3>GitHub</h3>
+            <p class="vs-tagline">The Cloud Sharing & Collaboration Website</p>
+          </div>
+          <div class="vs-analogy">
+            <strong>Real-Life Analogy:</strong> Think of GitHub as <em>Instagram or Google Drive for code</em> where you upload your photo albums to share with the world.
+          </div>
+          <ul class="vs-features">
+            <li>✅ A website (github.com) owned by Microsoft</li>
+            <li>✅ Hosts your remote Git repositories online</li>
+            <li>✅ Enables Pull Requests, Code Reviews, and Hacktoberfest badges</li>
+            <li>✅ Issue trackers, GitHub Actions (CI/CD), and Project Boards</li>
+            <li>⚠️ Uses Git under the hood to manage the repositories</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Searchable Command Cheat-Sheet -->
+  <section id="command-library" class="section cheat-sheet-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Quick Reference</span>
+        <h2 class="section-title">Complete Student Git Cheat Sheet</h2>
+        <p class="section-description">
+          Find any Git command with clear examples, simple explanations, and instant copy buttons.
+        </p>
+      </div>
+
+      <!-- Search and Filter Bar -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="command-search-input" placeholder="Search any command or keyword (e.g. push, undo, merge, remote)..." />
+          <button id="clear-search-btn" class="btn-clear" style="display: none;">✕</button>
+        </div>
+
+        <div class="category-pills" id="category-pills">
+          <button class="pill active" data-category="all">All (20)</button>
+          <button class="pill" data-category="setup">Setup & Config</button>
+          <button class="pill" data-category="daily">Daily Workflow</button>
+          <button class="pill" data-category="branches">Branches & Merge</button>
+          <button class="pill" data-category="remote">Remote & GitHub</button>
+          <button class="pill" data-category="undo">Undo & Inspect</button>
+        </div>
+      </div>
+
+      <!-- Commands Grid -->
+      <div id="commands-grid" class="commands-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Git Emergency Room (Fix common mistakes) -->
+  <section id="emergency-room" class="section emergency-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Git First Aid</span>
+        <h2 class="section-title">Git Emergency Room 🚑</h2>
+        <p class="section-description">
+          Made a mistake? Don't panic and delete your folder! Here is how to painlessly fix the most common student Git blunders.
+        </p>
+      </div>
+
+      <div class="emergency-grid" id="emergency-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Student Knowledge Check & Hacktoberfest Checklist -->
+  <section id="quiz-section" class="section quiz-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Test Your Understanding</span>
+        <h2 class="section-title">Quick Student Git Quiz</h2>
+        <p class="section-description">
+          Test what you just learned with 5 bite-sized scenarios. Earn your Git Ready badge!
+        </p>
+      </div>
+
+      <div class="quiz-container">
+        <div class="quiz-card" id="quiz-card">
+          <div class="quiz-progress-bar">
+            <div class="progress-fill" id="quiz-progress-fill" style="width: 20%;"></div>
+          </div>
+          <div class="quiz-header">
+            <span class="question-number" id="question-number">Question 1 of 5</span>
+            <span class="score-tracker" id="score-tracker">Score: 0 / 0</span>
+          </div>
+
+          <div class="quiz-body">
+            <h3 class="question-text" id="question-text">Loading question...</h3>
+            <div class="options-list" id="options-list">
+              <!-- Rendered via JS -->
+            </div>
+            <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
+              <!-- Dynamic feedback -->
+            </div>
+          </div>
+
+          <div class="quiz-footer">
+            <button id="next-question-btn" class="btn btn-primary" style="display: none;">Next Question →</button>
+          </div>
+        </div>
+
+        <!-- Hacktoberfest Contribution Checklist -->
+        <div class="checklist-card">
+          <div class="checklist-header">
+            <div class="badge-icon">🎃</div>
+            <div>
+              <h3>Hacktoberfest Student PR Checklist</h3>
+              <p>Tick each item before asking mentors to review your pull request!</p>
+            </div>
+          </div>
+          <ul class="checklist-items" id="pr-checklist">
+            <li>
+              <label class="custom-checkbox">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+                <span>Forked original repository to my own GitHub account</span>
+              </label>
+            </li>
+            <li>
+              <label class="custom-checkbox">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+                <span>Created a descriptive feature branch (e.g., <code class="inline-code">feat/dark-mode</code>, never worked on <code class="inline-code">main</code>)</span>
+              </label>
+            </li>
+            <li>
+              <label class="custom-checkbox">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+                <span>Wrote a meaningful commit message (e.g., "fix: typo in landing page")</span>
+              </label>
+            </li>
+            <li>
+              <label class="custom-checkbox">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+                <span>Verified code runs locally without throwing syntax errors</span>
+              </label>
+            </li>
+            <li>
+              <label class="custom-checkbox">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+                <span>Opened Pull Request referencing the Issue number (e.g., "Closes #12")</span>
+              </label>
+            </li>
+            <li>
+              <label class="custom-checkbox">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+                <span>Remained polite and receptive to feedback during mentor code review</span>
+              </label>
+            </li>
+          </ul>
+          <div class="checklist-summary">
+            <span id="checklist-progress-text">0 of 6 completed</span>
+            <div class="celebrate-pill" id="celebrate-pill" style="display: none;">🎉 Ready to submit PR!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">Git<span class="accent-text">Gravity</span></div>
+        <p>Built for students participating in Hacktoberfest & Open Source Hackathons. Powered by Google Antigravity.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <span>Quick Resources:</span>
+          <a href="https://git-scm.com/doc" target="_blank" rel="noopener">Official Git Docs</a>
+          <a href="https://docs.github.com" target="_blank" rel="noopener">GitHub Docs</a>
+          <a href="https://hacktoberfest.com" target="_blank" rel="noopener">Hacktoberfest Official</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Modules -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
