@@ -60,8 +60,8 @@ function initSimulator() {
   // Initial State
   const defaultState = {
     branch: 'main',
-    remote: 'github.com/student/hackday',
-    isPushed: false,
+    remote: 'github.com/Mustafa1765/GitGravity',
+    isPushed: true,
     untracked: ['index.html', 'style.css'],
     staged: [],
     commits: [
